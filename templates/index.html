@@ -8,7 +8,10 @@
   <title>NYC Eviction Record</title>
 
   <!-- Bring in our bootstrap stylesheet -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+  <!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
 
   <!-- style information -->
   <link rel="stylesheet" type="text/css" href="../static/css/style.css">
@@ -18,18 +21,27 @@
   <!-- Navigation Bar -->
   
   <div class="navigation">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand logo" href="/" style="color: white">NYC Eviction</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: sandybrown;">
+      <a class="navbar-brand logo" href="/" style="color:white; background-color: sandybrown;">NYC Eviction</a>
+      
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
         aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="col-2"></div>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="nav navbar-nav mr-auto mt-2 mt-lg-0">
-          <li><a href="/" class="menu-option">Home</a></li>
-          <li><a href="/method" class="menu-option">Method</a></li>
-          <!-- NEW CODE -->
+
+      <!-- <div class="col-2"></div> -->
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02" style="color:white ; background-color:sandybrown;">
+        <ul class="nav navbar-nav ml-auto">
+
+          <!-- <li class="nav-item">
+            <a href="/" class="menu-option">Home</a>
+          </li> -->
+
+          <li class="nav-item">
+            <a href="/method" class="menu-option">Method</a>
+          </li>
+          
           <li class="nav-item dropdown">
             <a href="#" class="menu-option dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
               aria-expanded="true"> <span class="nav-label">Visualizations</span> <span class="caret"></span></a>
@@ -54,39 +66,30 @@
   <!-- ------------------------------------- -->
   <div class="wrapper">
 
-
-    <!-- <div class="hero text-center">
-      <h2 style="color:; margin-top: 50px";>New York City</h2>
-      <p>Eviction Record: 2017 - 2019</p>
-    </div>
-  </div> -->
-
     <div class="hero heroLanding text-center">
-      <h2 style="color: red; margin-top: 100px";>New York City Eviction Record: 2017 - 2019</h2>
+      <h2 style="color:white; margin-top: 100px";>New York City</h2>
+      <h5 style="color:white";>Eviction Record: 2017 - 2019</h5>
+      <br>  
     </div>
-    <!-- ------------------------------------- -->
     
-
-
 
     <!-- container-->
     <div class="container">
-      <div class="row">
-        <div class="col-md-12 jumbotron text-center">
-          <p class="heading">New York City Eviction Record: 2017 - 2019</p>
-        </div>
-      </div>
+      
       <!-- top banner -->
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-12">
           <img src="../static/images/Homepage-Top-Banner.jpg" alt="Home Page Top Banner"
             style="padding-bottom: 10px;width:950px;height:400px;">
         </div>
-      </div>
+      </div> -->
+
+
       <!-- introduction -->
-      <div class="row">
-        <div class="col-md-12">
-          <span class="homepage-heading">Introduction</span>
+      <div class="row"><h1>Introduction</h1></div>
+      <!-- <div class="row"> -->
+        <!-- <div class="col-md-12"> -->
+          <!-- <span class="homepage-heading">Introduction</span> -->
         </div>
         <div class="col-md-12">
           <p class="homepage-info">This dashboard seeks to look at NYC eviction data between the years 2017-2019.
