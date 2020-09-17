@@ -11,26 +11,27 @@ const evictionTotal = (id) => {
     childDiv.setAttribute("id", "map")
     childDiv.setAttribute("style", "height: 600px;")
     mapPapa.appendChild(childDiv)
+
     // setting eviction threshold based on user input
     let totalMinEviction, totalMaxEviction
     switch (id) {
-        case "All Evictions":
+        case "All":
             totalMinEviction = 1;
             totalMaxEviction = 99999;
             break;
-        case "Upto 100 per Yr":
+        case "Upto 100":
             totalMinEviction = 1;
             totalMaxEviction = 100;
             break;
-        case "101 - 200 per Yr":
+        case "101 - 200":
             totalMinEviction = 101;
             totalMaxEviction = 200;
             break;
-        case "201 - 300 per Yr":
+        case "201 - 300":
             totalMinEviction = 201;
             totalMaxEviction = 300;
             break;
-        case "More than 300 per Yr":
+        case "More than 300":
             totalMinEviction = 301;
             totalMaxEviction = 99999;
             break;
@@ -80,6 +81,23 @@ const evictionTotal = (id) => {
             }
         };
 
+        // ---------------------------------------------------------
+
+        // const popup = L.popup();
+
+        // function onMapClick(data) {
+        //     popup
+        //         .setLatLng([data.Latitude, data.Longitude])
+        //         .setContent("<h3>" + data.year + "</h3> <hr> <h3>Zip Code: " + data.Zip + "</h3> <hr> <h3>No. of Eviction: " + data.total + "</h3>")
+        //         .openOn(mymap);
+        // }
+
+        // myMap.on('click', onMapClick);
+        // ---------------------------------------------------------
+
+
+
+
         // various map Layers
         const streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
             attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
@@ -128,10 +146,14 @@ const evictionTotal = (id) => {
                 zoom: 11,
                 layers: [streetmap, y2019]
             });
+
         // Add the layer control to the map
         L.control.layers(baseMaps, overlayMaps, {
             collapsed: false
         }).addTo(myMap);
+
+        L.circle.bindPopup("<h3>" + data.year + "</h3> <hr> <h3>Zip Code: " + data.Zip + "</h3> <hr> <h3>No. of Eviction: " + data.total + "</h3>").addTo(myMap);
+
 
     });
 }

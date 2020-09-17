@@ -16,34 +16,46 @@
 </head>
 
 <body>
-  <!-- nav bar-->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand logo" href="/" style="color: white">NYC Eviction</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-      aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="col-2"></div>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="nav navbar-nav mr-auto mt-2 mt-lg-0">
-        <li><a href="/" class="menu-option">Home</a></li>
-        <li><a href="/method" class="menu-option">Method</a></li>
-        <!-- NEW CODE -->
-        <li class="nav-item dropdown">
-          <a href="#" class="menu-option dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-            aria-expanded="true"> <span class="nav-label">Visualizations</span> <span class="caret"></span></a>
-          <ul class="menu-option dropdown-menu">
-            <li><a href="/byborough" class="menu-option">By Borough</a></li>
-            <li><a href="/byproperty" class="menu-option">By Property Type</a></li>
-            <li><a href="/byzipcode" class="menu-option">By Zip code</a></li>
-            <li><a href="/yearoveryear" class="menu-option">Year over Year</a></li>
-          </ul>
-        </li>
-        <li><a href="/nycmap" class="menu-option">NYC Map</a></li>
-        <li><a href="/aboutus" class="menu-option">About Us</a></li>
-      </ul>
-    </div>
-  </nav>
+  <!-- Navigation Bar -->  
+  <div class="navigation">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand logo" href="/" style="color:white;">NYC Eviction</a>
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- <div class="col-2"></div> -->
+
+      <div class="collapse navbar-collapse" id="navbarRight" style="color:white ; background-color:#eda845;">
+        <ul class="nav navbar-nav ml-auto">
+
+          <!-- <li class="nav-item">
+            <a href="/" class="menu-option">Home</a>
+          </li> -->
+
+          <li class="nav-item">
+            <a href="/method" class="menu-option">Method</a>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a href="#" class="menu-option dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+              aria-expanded="true"> <span class="nav-label">Visualizations</span> <span class="caret"></span></a>
+            <ul class="menu-option dropdown-menu">
+              <li><a href="/byborough" class="menu-option">By Borough</a></li>
+              <li><a href="/byproperty" class="menu-option">By Property Type</a></li>
+              <li><a href="/byzipcode" class="menu-option">By Zip code</a></li>
+              <li><a href="/yearoveryear" class="menu-option">Year over Year</a></li>
+            </ul>
+          </li>
+          <li><a href="/nycmap" class="menu-option">NYC Map</a></li>
+          <li><a href="/aboutus" class="menu-option">About Us</a></li>
+        </ul>
+      </div>
+
+    </nav>
+  </div>
 
   <!-- container/wrapper-->
   <div class="container">
@@ -55,19 +67,19 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <div class="well">
-          <h5>Select Eviction Threshold:</h5>
+          <h5>No. of Evictions <br>per Year:</h5>
           <select id="selDataset" onchange="evictionTotal(this.value)">
-            <option>All Evictions</option>
-            <option>Upto 100 per Yr</option>
-            <option>101 - 200 per Yr</option>
-            <option>201 - 300 per Yr</option>
-            <option>More than 300 per Yr</option>
+            <option>All</option>
+            <option>Upto 100</option>
+            <option>101 - 200</option>
+            <option>201 - 300</option>
+            <option>More than 300</option>
           </select>
         </div>
       </div>
-      <div class="col-md-8" id="mapPapa">
+      <div class="col-md-9" id="mapPapa">
         <div id="map" style="height: 600px;"></div>
       </div>
     </div>
@@ -79,21 +91,13 @@
           significantly. Otherwise,
           during the rest of the year evictions are fluctuating. This may be because around the holidays marshals
           customarily take their break, providing temporary relief to tenants.</p>
+
+          the zip codes with a high number of evictions.
       </div>
     </div>
   </div>
 
-  <!-- jquery-->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
-  </script>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  
   <!-- API key -->
   <script type="text/javascript" src="static/js/config.js"></script>
 

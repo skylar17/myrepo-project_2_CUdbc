@@ -15,12 +15,20 @@ body,
 }
 
 
-.navbar {
-    /* background-color: sandybrown; */
+.navigation {
+    background-color: wheat;
+    border: 2px solid wheat;
     padding: 0;
     /* margin: 5px, 5px, 5px, 5px; */
     font-size: 20px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.collapse #navbarRight {
+    background-color:wheat;
+    color: white;
+    padding: 5px;
+
 }
 
 /* -------------------------------- */
@@ -28,12 +36,14 @@ body,
 .hero {
     position: relative;
     height: 600px;
+    width: 100%;
     padding: 10px;
     margin: 0;
     background:white;
     background-attachment: fixed;
     background-position: bottom center;
     background-size: cover;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     }
     
   .heroLanding {
@@ -42,6 +52,8 @@ body,
 
 
 /* ----------------------------- */
+
+
 .site-body {
     font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
 }
