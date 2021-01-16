@@ -11,38 +11,28 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <!-- Bring in Mapbox CSS -->
   <link rel="stylesheet" href="//api.mapbox.com/mapbox.js/v2.2.2/mapbox.css" />
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
   <!-- style information -->
   <link rel="stylesheet" type="text/css" href="../static/css/style.css">
 </head>
 
 <body>
-  <!-- Navigation Bar -->  
-  <div class="navigation">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand logo" href="/" style="color:white;">NYC Eviction</a>
-      
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <!-- <div class="col-2"></div> -->
-
-      <div class="collapse navbar-collapse" id="navbarRight" style="color:white ; background-color:#eda845;">
-        <ul class="nav navbar-nav ml-auto">
-
-          <!-- <li class="nav-item">
-            <a href="/" class="menu-option">Home</a>
-          </li> -->
-
-          <li class="nav-item">
-            <a href="/method" class="menu-option">Method</a>
-          </li>
-          
+  <div class="wrapper">
+    <!-- nav bar-->
+    <nav class="navbar navbar-expand-lg" style="background-color: #F2A036; color: white">
+      <a class="navbar-brand logo" href="/" style="background-color: #F2A036; color: white">NYC Eviction</a>
+      <div class="col-6"></div>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="nav navbar-nav mr-auto mt-2 mt-lg-0">
+          <li><a href="/method" class="menu-option">Method</a></li>
+          <!-- NEW CODE -->
           <li class="nav-item dropdown">
             <a href="#" class="menu-option dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
               aria-expanded="true"> <span class="nav-label">Visualizations</span> <span class="caret"></span></a>
-            <ul class="menu-option dropdown-menu">
+            <ul class="menu-option dropdown-menu" style="background-color:#F2A036">
               <li><a href="/byborough" class="menu-option">By Borough</a></li>
               <li><a href="/byproperty" class="menu-option">By Property Type</a></li>
               <li><a href="/byzipcode" class="menu-option">By Zip code</a></li>
@@ -53,57 +43,60 @@
           <li><a href="/aboutus" class="menu-option">About Us</a></li>
         </ul>
       </div>
-
     </nav>
-  </div>
 
-  <!-- container/wrapper-->
-  <div class="container">
-    <!-- year over year plot -->
-    <div class="row">
-      <div class="col-md-12 jumbotron text-center">
-        <p class="heading">NYC Eviction Record - Map by Zip code</p>
-        <p class="sub-heading">Use the interactive charts below to explore the dataset</p>
-      </div>
+    <!-- page header -->
+    <div class="hero text-center">
+      <p class="heading">NYC Eviction Record - Map by Zip code</p>
+      <p class="sub-heading">Use the interactive charts below to explore the dataset</p>
     </div>
-    <div class="row">
-      <div class="col-md-3">
-        <div class="well">
-          <h5>No. of Evictions <br>per Year:</h5>
-          <select id="selDataset" onchange="evictionTotal(this.value)">
-            <option>All</option>
-            <option>Upto 100</option>
-            <option>101 - 200</option>
-            <option>201 - 300</option>
-            <option>More than 300</option>
-          </select>
+    <!-- container/wrapper-->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="well">
+            <h5>Select Eviction Threshold:</h5>
+            <select id="selDataset" onchange="evictionTotal(this.value)">
+              <option>All Evictions</option>
+              <option>Upto 100 per Yr</option>
+              <option>101 - 200 per Yr</option>
+              <option>201 - 300 per Yr</option>
+              <option>More than 300 per Yr</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-9" id="mapPapa">
+          <div id="map" style="height: 600px; margin-top: 15px"></div>
         </div>
       </div>
-      <div class="col-md-9" id="mapPapa">
-        <div id="map" style="height: 600px;"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12 footer-info">
-        <p class="plot-info">Select a borough to dynamically change the line chart to visualize the number of evictions
-          year by year.</p>
-        <p class="plot-info">Interestingly, during the holiday season (October - December), evictions decrease
-          significantly. Otherwise,
-          during the rest of the year evictions are fluctuating. This may be because around the holidays marshals
-          customarily take their break, providing temporary relief to tenants.</p>
-
-          the zip codes with a high number of evictions.
+      <div class="row">
+        <div class="col-md-12 footer-info">
+          <p class="plot-info">Select a type of base map (either Street or Dark or Light), a year, and a threshold to
+            visualize corresponding evictions in the zip codes within NYC. The sizes of the circles are based on the
+            number of evictions in a selected year.</p>
+          <p class="plot-info">As we can see in the map, most evictions are happening in the Bronx and Brooklyn. Staten
+            Island has the least number of evictions.</p>
+        </div>
       </div>
     </div>
   </div>
-
-  
+  <!-- jquery-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <!-- API key -->
   <script type="text/javascript" src="static/js/config.js"></script>
 
   <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
-    integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
   <!-- D3 CDN -->
   <script src="https://d3js.org/d3.v4.min.js"></script>

@@ -9,38 +9,37 @@ const evictionTotal = (id) => {
     const mapPapa = document.getElementById("mapPapa");
     const childDiv = document.createElement('div');
     childDiv.setAttribute("id", "map")
-    childDiv.setAttribute("style", "height: 600px;")
+    childDiv.setAttribute("style", "height: 600px; margin-top: 15px")
     mapPapa.appendChild(childDiv)
-
     // setting eviction threshold based on user input
     let totalMinEviction, totalMaxEviction
     switch (id) {
-        case "All":
+        case "All Evictions":
             totalMinEviction = 1;
             totalMaxEviction = 99999;
             break;
-        case "Upto 100":
+        case "Upto 100 per Yr":
             totalMinEviction = 1;
             totalMaxEviction = 100;
             break;
-        case "101 - 200":
+        case "101 - 200 per Yr":
             totalMinEviction = 101;
             totalMaxEviction = 200;
             break;
-        case "201 - 300":
+        case "201 - 300 per Yr":
             totalMinEviction = 201;
             totalMaxEviction = 300;
             break;
-        case "More than 300":
+        case "More than 300 per Yr":
             totalMinEviction = 301;
             totalMaxEviction = 99999;
             break;
     }
 
     d3.json(allData, function (response) {
-        const markers2017 = [];
-        const markers2018 = [];
-        const markers2019 = [];
+        let markers2017 = [];
+        let markers2018 = [];
+        let markers2019 = [];
 
         for (let i = 0; i < response.length; i++) {
 
@@ -55,7 +54,7 @@ const evictionTotal = (id) => {
                             fillOpacity: 0.75,
                             radius: data.total * 2,
                             weight: 0.2
-                        }).bindPopup("<h3>" + data.year + "</h3> <hr> <h3>Zip Code: " + data.Zip + "</h3> <hr> <h3>No. of Eviction: " + data.total + "</h3>")
+                        }).bindPopup("<h3>Year: " + data.year + "</h3> <hr> <h3>Zip Code: " + data.Zip + "</h3> <hr> <h3>No. of Eviction: " + data.total + "</h3>")
                     )
                 } else if (data.year === 2018) {
                     markers2018.push(
@@ -65,7 +64,7 @@ const evictionTotal = (id) => {
                             fillOpacity: 0.75,
                             radius: data.total * 2,
                             weight: 0.2
-                        }).bindPopup("<h3>" + data.year + "</h3> <hr> <h3>Zip Code: " + data.Zip + "</h3> <hr> <h3>No. of Eviction: " + data.total + "</h3>")
+                        }).bindPopup("<h3>Year: " + data.year + "</h3> <hr> <h3>Zip Code: " + data.Zip + "</h3> <hr> <h3>No. of Eviction: " + data.total + "</h3>")
                     )
                 } else if (data.year === 2019) {
                     markers2019.push(
@@ -75,28 +74,11 @@ const evictionTotal = (id) => {
                             fillOpacity: 0.75,
                             radius: data.total * 2,
                             weight: 0.2
-                        }).bindPopup("<h3>" + data.year + "</h3> <hr> <h3>Zip Code: " + data.Zip + "</h3> <hr> <h3>No. of Eviction: " + data.total + "</h3>")
+                        }).bindPopup("<h3>Year: " + data.year + "</h3> <hr> <h3>Zip Code: " + data.Zip + "</h3> <hr> <h3>No. of Eviction: " + data.total + "</h3>")
                     )
                 }
             }
         };
-
-        // ---------------------------------------------------------
-
-        // const popup = L.popup();
-
-        // function onMapClick(data) {
-        //     popup
-        //         .setLatLng([data.Latitude, data.Longitude])
-        //         .setContent("<h3>" + data.year + "</h3> <hr> <h3>Zip Code: " + data.Zip + "</h3> <hr> <h3>No. of Eviction: " + data.total + "</h3>")
-        //         .openOn(mymap);
-        // }
-
-        // myMap.on('click', onMapClick);
-        // ---------------------------------------------------------
-
-
-
 
         // various map Layers
         const streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -146,14 +128,10 @@ const evictionTotal = (id) => {
                 zoom: 11,
                 layers: [streetmap, y2019]
             });
-
         // Add the layer control to the map
         L.control.layers(baseMaps, overlayMaps, {
             collapsed: false
         }).addTo(myMap);
-
-        L.circle.bindPopup("<h3>" + data.year + "</h3> <hr> <h3>Zip Code: " + data.Zip + "</h3> <hr> <h3>No. of Eviction: " + data.total + "</h3>").addTo(myMap);
-
 
     });
 }
